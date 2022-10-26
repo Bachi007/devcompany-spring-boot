@@ -1,1 +1,0 @@
-memberSearchIndex = [{"p":"com.devlaptop.controller","c":"developerController","l":"addDeveloper(developer)","u":"addDeveloper(com.devlaptop.model.developer)"},{"p":"com.devlaptop.controller","c":"developerController","l":"developerController()","u":"%3Cinit%3E()"},{"p":"com.devlaptop.controller","c":"developerController","l":"getAllDevs()"}];updateSearchResults();
