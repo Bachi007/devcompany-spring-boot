@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,8 +38,37 @@ public class laptopController {
 	}
 	
 	
+	//api to update the laptop
+	//@PutMapping("/laptop")
+	@RequestMapping(method=RequestMethod.PUT, value="/laptop")
+	public ResponseEntity<String> updateLaptop(@RequestBody laptop l1){
+		
+		String status=service.updateLaptop(l1);
+		if(status!=null)
+		{
+		return new ResponseEntity<>(status,HttpStatus.OK );
+		}
+		else {
+			return new ResponseEntity<>(status,HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
+	}
+	
+	//api to delete the laptop
+	@RequestMapping(method=RequestMethod.DELETE,value="/laptop/{lapid}")
+	public ResponseEntity<String> deleteLaptop(@PathVariable int lapid){
+		
+		String status=service.deleteLaptop(lapid);
+		if(status!=null)
+		{
+		return new ResponseEntity<>(status,HttpStatus.OK );
+		}
+		else {
+			return new ResponseEntity<>(status,HttpStatus.INTERNAL_SERVER_ERROR);
+		}	
+	}
 	
 	
 	
-
+	
+	
 }
