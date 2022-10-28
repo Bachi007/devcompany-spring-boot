@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import com.devlaptop.model.laptop;
 import com.devlaptop.repository.laptopRepository;
@@ -56,6 +58,24 @@ public class laptopService {
 			return null;
 		}
 	}
+	
+	//sorting the list of laptops based on a specific field of a table
+	public List<laptop> getLaptops(String field){
+		
+		
+		return laprepo.findAll(Sort.by(Direction.DESC,field));
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
 
