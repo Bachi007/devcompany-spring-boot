@@ -3,6 +3,7 @@ package com.devlaptop.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,17 +69,23 @@ public class laptopController {
 		}	
 	}
 	
-	//getting sorted list of laptops based on specific field of table 
-	@GetMapping("/getlaptops/{field}")
+	//getting list of laptops in sorted order
+	@GetMapping("/laptop/{field}")
 	public ResponseEntity<List<laptop>> getLaptops(@PathVariable String field){
-		
-		
-		return new ResponseEntity<>(service.getLaptops(field),HttpStatus.OK);
-		
+	
+		List<laptop> lapList=service.getLaptops(field);
+		return new ResponseEntity<>(lapList,HttpStatus.ACCEPTED);
 		
 	}
 	
-	
+	//getting pages based on offset and pagesize
+	@GetMapping("/laptop/{offset}/{pagesize}")
+	public ResponseEntity<Page<laptop>> getLaptopswithPagination(@PathVariable int offset, @PathVariable int pagesize){
+		
+		Page<laptop> lapPage=service.getProductwithPagination(offset, pagesize);
+		
+		return new ResponseEntity<>(lapPage,HttpStatus.OK);
+	}
 	
 	
 	

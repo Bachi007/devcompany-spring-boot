@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
@@ -59,15 +61,22 @@ public class laptopService {
 		}
 	}
 	
-	//sorting the list of laptops based on a specific field of a table
+	//retriving list of laptops in sorted
 	public List<laptop> getLaptops(String field){
-		
 		
 		return laprepo.findAll(Sort.by(Direction.DESC,field));
 		
-		
 	}
 	
+	//retriving different page of laptops based on offset and pagesize
+	public Page<laptop> getProductwithPagination(int offset,int pagesize){
+		
+		return laprepo.findAll(PageRequest.of(offset, pagesize));
+		
+	//100 rows in a table
+		//10 rows per page-offset
+		//10 pages-pagesize
+	}
 	
 	
 	
